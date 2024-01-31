@@ -123,6 +123,23 @@
       attackDragon(heroesArray[2]);
     });
 
+    // Funksjon for å angripe dragen, sjekke om helten er i livet, oppdatere dragen sin helse og en alert for heltene sitt angrep på dragen.
+
+    function attackDragon(hero) {
+      if (hero.alive) {
+        const damage = hero.damage;
+        dragonObject.currentHP -= damage;
+
+        document.querySelector(".dragon-health-txt").innerText =
+          dragonObject.currentHP + "/" + dragonObject.maxHP + "HP";
+
+        alert(`${hero.name} har gjort ${damage} skade på ${dragonObject.name}!`);
+
+      }
+    }
+
+
+
 
 
   </script>
