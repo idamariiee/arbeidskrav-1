@@ -107,6 +107,24 @@
       damage: 200,
       alive: true,
     };
+
+
+    // Lager eventListener med klikkfunksjon på hver av heltene, og den påkaller attackDragon funksjonen på hver av heltene, og gir dem ett navn. 
+
+    document.querySelector(".img-container.healer").addEventListener("click", function () {
+      attackDragon(heroesArray[0]);
+    });
+
+    document.querySelector(".img-container.archer").addEventListener("click", function () {
+      attackDragon(heroesArray[1]);
+    });
+
+    document.querySelector(".img-container.warrior").addEventListener("click", function () {
+      attackDragon(heroesArray[2]);
+    });
+
+
+
   </script>
 </body>
 
