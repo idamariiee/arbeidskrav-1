@@ -171,6 +171,7 @@
       deadHero();
     }
 
+
     function deadHero() {
       if (heroesArray[0].currentHP <= 0) {
         heroesArray[0].alive = false;
@@ -195,7 +196,21 @@
           heroWarrior.remove();
         }
       }
+
+      checkAllHeroesDead();
+
     }
+
+    //Laget en funksjon som sjekker alle sin currentHP, hvis den er lik 0 eller lavere så kjører den ut alert om at spillet er tapt. 
+
+    function checkAllHeroesDead() {
+      const allHeroesDead = heroesArray.every(hero => hero.currentHP <= 0);
+
+      if (allHeroesDead) {
+        alert(`Spillet er tapt! ${dragonObject.name} har vunnet!`);
+      }
+    }
+
   </script>
 </body>
 
