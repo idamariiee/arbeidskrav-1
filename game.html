@@ -137,6 +137,8 @@
 
         dragonAttack(dragonObject);
 
+        dragonDead();
+
       }
     }
 
@@ -159,6 +161,7 @@
           alert(`${dragonObject.name} has attacked ${randomHero.name}!`);
         }
       }
+      checkDragonDead();
     }
 
     //  Her har jeg laga en funksjon som gjør at den oppdaterer max og current HP 
@@ -175,25 +178,31 @@
     function deadHero() {
       if (heroesArray[0].currentHP <= 0) {
         heroesArray[0].alive = false;
-        let heroHealer = document.querySelector(".img-container.healer");
+        let heroHealer = document.querySelector(".healer");
         if (heroHealer) {
-          heroHealer.remove();
+          setTimeout(function () {
+            heroHealer.remove();
+          }, 0);
         }
       }
 
       if (heroesArray[1].currentHP <= 0) {
         heroesArray[1].alive = false;
-        let heroArcher = document.querySelector(".img-container.archer");
+        let heroArcher = document.querySelector(".archer");
         if (heroArcher) {
-          heroArcher.remove();
+          setTimeout(function () {
+            heroArcher.remove();
+          }, 0);
         }
       }
 
       if (heroesArray[2].currentHP <= 0) {
         heroesArray[2].alive = false;
-        let heroWarrior = document.querySelector(".img-container.warrior");
+        let heroWarrior = document.querySelector(".warrior");
         if (heroWarrior) {
-          heroWarrior.remove();
+          setTimeout(function () {
+            heroWarrior.remove();
+          }, 0);
         }
       }
 
@@ -211,6 +220,18 @@
       }
     }
 
+    function checkDragonDead() {
+      if (dragonObject.currentHP <= 0) {
+        let dragonEnemy = document.querySelector(".dragon");
+        if (dragonEnemy) {
+          dragonEnemy.remove();
+        }
+
+        setTimeout(function () {
+          alert(`Gratulerer, du har vunnet spillet!`);
+        }, 0);
+      }
+    }
   </script>
 </body>
 
