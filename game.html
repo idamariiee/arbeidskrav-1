@@ -128,7 +128,7 @@
     function attackDragon(hero) {
       if (hero.alive) {
         const damage = hero.damage;
-        dragonObject.currentHP -= damage;
+        dragonObject.currentHP = Math.max(dragonObject.currentHP - damage, 0);
 
         if (hero.name === "Henriette Healer") {
           healAllHeroes(100);
@@ -184,6 +184,7 @@
 
     function updateHeroHealth(hero) {
       const heroHealthContainerClass = `.hero-health-containers .healthbar-container:nth-child(${hero.id + 1})`;
+      hero.currentHP = Math.max(hero.currentHP, 0);
       document.querySelector(`${heroHealthContainerClass} .text-container p:last-child`).innerText =
         `${hero.currentHP} / ${hero.maxHP} HP`;
 
