@@ -139,9 +139,10 @@
 
         alert(`${hero.name} har gjort ${damage} skade på ${dragonObject.name}!`);
 
+        dragonDead();
         dragonAttack(dragonObject);
 
-        dragonDead();
+
 
       }
     }
@@ -159,7 +160,7 @@
     }
 
 
-    // Her har jeg laget en funksjon som gjør at dragen angriper en tilfeldig hero. Den sjekker også at alle er i live (jeg har ikke fiksa enda at noen er død, will do later... var en nydelig "bug" på HPene hahah
+    // Her har jeg laget en funksjon som gjør at dragen angriper en tilfeldig hero. Den sjekker også at alle er i live. 
 
 
     function dragonAttack() {
@@ -191,40 +192,27 @@
       deadHero();
     }
 
+    // Funksjon for å sjekke om heroen er død, og for å fjerne heroens bilde fra spillet om heroen er død.
 
     function deadHero() {
-      if (heroesArray[0].currentHP <= 0) {
-        heroesArray[0].alive = false;
-        let heroHealer = document.querySelector(".healer");
-        if (heroHealer) {
-          setTimeout(function () {
-            heroHealer.remove();
-          }, 0);
+      for (let i = 0; i < heroesArray.length; i++) {
+        if (heroesArray[i].currentHP <= 0) {
+          heroesArray[i].alive = false;
+          let heroClass = getHeroClass(i);
+          let heroElement = document.querySelector("." + heroClass);
+          if (heroElement) {
+            setTimeout(function () {
+              heroElement.remove();
+            }, 0);
+          }
         }
       }
-
-      if (heroesArray[1].currentHP <= 0) {
-        heroesArray[1].alive = false;
-        let heroArcher = document.querySelector(".archer");
-        if (heroArcher) {
-          setTimeout(function () {
-            heroArcher.remove();
-          }, 0);
-        }
-      }
-
-      if (heroesArray[2].currentHP <= 0) {
-        heroesArray[2].alive = false;
-        let heroWarrior = document.querySelector(".warrior");
-        if (heroWarrior) {
-          setTimeout(function () {
-            heroWarrior.remove();
-          }, 0);
-        }
-      }
-
       checkAllHeroesDead();
+    }
 
+    function getHeroClass(index) {
+      const classes = ["healer", "archer", "warrior"];
+      return classes[index] || "";
     }
 
     //Laget en funksjon som sjekker alle sin currentHP, hvis den er lik 0 eller lavere så kjører den ut alert om at spillet er tapt. 
@@ -236,6 +224,8 @@
         alert(`Spillet er tapt! ${dragonObject.name} har vunnet!`);
       }
     }
+
+    // Funksjon for å sjekke om dragen er død, og sende alert med at man har vunnet spillet. 
 
     function checkDragonDead() {
       if (dragonObject.currentHP <= 0) {
